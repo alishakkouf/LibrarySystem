@@ -1,0 +1,38 @@
+﻿@model IEnumerable<TitanTechTask.Domain.Books.BookDomain>
+
+<h2>My Borrowed Books</h2>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Borrowed Date</th>
+                <th></th> <!-- For the Return button -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.BorrowedDate?.ToShortDateString()</td>
+                    <td>
+                        <!-- Return button -->
+                        <form asp-action="ReturnBook" method="post">
+                            <input type="hidden" name="bookId" value="@book.BookId" />
+                            <button type="submit" class="btn btn-danger">Return</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>You haven't borrowed any books yet.</p>
+}

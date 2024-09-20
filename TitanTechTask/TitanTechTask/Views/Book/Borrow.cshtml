@@ -1,0 +1,26 @@
+﻿@model TitanTechTask.Domain.Books.BookDomain
+
+<h2>Borrow Book</h2>
+
+<p>Are you sure you want to borrow this book?</p>
+
+<table>
+    <tr>
+        <th>Title:</th>
+        <td>@Model.Title</td>
+    </tr>
+    <tr>
+        <th>Author:</th>
+        <td>@Model.Author</td>
+    </tr>
+    <tr>
+        <th>ISBN:</th>
+        <td>@Model.ISBN</td>
+    </tr>
+</table>
+
+<form method="post" action="/Book/ConfirmBorrow">
+    <input type="hidden" name="bookId" value="@Model.BookId" />
+    <input type="submit" value="Confirm Borrow" class="btn btn-success" />
+    <a href="/Book/Index" class="btn btn-secondary">Cancel</a>
+</form>

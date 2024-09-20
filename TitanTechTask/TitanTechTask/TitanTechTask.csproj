@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Book\Search.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TitanTechTask.Data\TitanTechTask.Data.csproj" />
+    <ProjectReference Include="..\TitanTechTask.Domain\TitanTechTask.Domain.csproj" />
+    <ProjectReference Include="..\TitanTechTask.Manager\TitanTechTask.Manager.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Book\Search.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Book\Search.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Book\Search.cshtml" />
+  </ItemGroup>
+
+</Project>

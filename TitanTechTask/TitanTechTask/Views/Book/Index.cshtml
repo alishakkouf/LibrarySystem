@@ -1,0 +1,51 @@
+﻿@model IEnumerable<TitanTechTask.Domain.Books.BookDomain>
+
+<form method="post" action="/Book/Search">
+    <input type="text" name="Title" placeholder="Title" />
+    <input type="text" name="Author" placeholder="Author" />
+    <input type="text" name="ISBN" placeholder="ISBN" />
+    <input type="submit" value="Search" />
+</form>
+
+<br />
+
+<!-- Button to view borrowed books -->
+<form method="get" action="/Book/MyBorrowedBooks">
+    <input type="submit" value="View My Borrowed Books" class="btn btn-primary" />
+</form>
+
+<br />
+<br />
+
+<table style="width: 100%; border-spacing: 15px;">
+    <thead>
+        <tr>
+            <th style="padding-right: 20px;">Title</th>
+            <th style="padding-right: 20px;">Author</th>
+            <th style="padding-right: 20px;">ISBN</th>
+            <th style="padding-right: 20px;">Available</th>
+            <th style="padding-right: 20px;">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td style="padding-right: 20px;">@book.Title</td>
+                <td style="padding-right: 20px;">@book.Author</td>
+                <td style="padding-right: 20px;">@book.ISBN</td>
+                <td style="padding-right: 20px;">@(book.Available ? "Yes" : "No")</td>
+                <td>
+                    @if (book.Available)
+                    {
+                        <form method="get" action="/Book/Borrow">
+                            <input type="hidden" name="bookId" value="@book.BookId" />
+                            <input type="submit" value="Borrow" class="btn btn-success" />
+                        </form>
+                    }
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

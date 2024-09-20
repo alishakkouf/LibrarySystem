@@ -1,0 +1,20 @@
+﻿@model LoginViewModel
+
+@if (!ViewData.ModelState.IsValid)
+{
+    foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+    {
+        <div class="alert alert-danger">@error.ErrorMessage</div>
+    }
+}
+
+<form asp-action="Login" method="post">
+    <label asp-for="Username"></label>
+    <input asp-for="Username" required />
+    
+    <label asp-for="Password"></label>
+    <input asp-for="Password" type="password" required />
+    
+    <button type="submit">Login</button>
+</form>
+

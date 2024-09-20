@@ -1,0 +1,9 @@
+﻿<h2>Return Book</h2>
+
+<p>Are you sure you want to return the book:</p>
+<p><strong>@Model.Title</strong> by @Model.Author</p>
+
+<form method="post" action="/Library/ReturnBook">
+    <input type="hidden" name="BookId" value="@Model.BookId" />
+    <input type="submit" value="Confirm Return" />
+</form>

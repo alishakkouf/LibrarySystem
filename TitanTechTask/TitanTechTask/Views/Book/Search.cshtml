@@ -1,0 +1,49 @@
+﻿@model IEnumerable<TitanTechTask.Domain.Books.BookDomain>
+
+<h2>Search Books</h2>
+
+<form method="get" action="/Book/Search">
+    <input type="text" name="title" placeholder="Title" value="@Request.Query["title"]" />
+    <input type="text" name="author" placeholder="Author" value="@Request.Query["author"]" />
+    <input type="text" name="isbn" placeholder="ISBN" value="@Request.Query["isbn"]" />
+    <input type="submit" value="Search" />
+</form>
+
+@if (Model != null && Model.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>Available</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.ISBN</td>
+                    <td>@(book.Available ? "Yes" : "No")</td>
+                    <td>
+                        @if (book.Available)
+                        {
+                            <form method="post" action="/Library/Borrow">
+                                <input type="hidden" name="BookId" value="@book.BookId" />
+                                <input type="submit" value="Borrow" />
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No books found.</p>
+}
