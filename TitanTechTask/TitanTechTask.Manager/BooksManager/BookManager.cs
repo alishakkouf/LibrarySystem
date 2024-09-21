@@ -16,9 +16,13 @@ namespace TitanTechTask.Manager.BooksManager
             _bookProvider = bookProvider;
         }
 
-        public async Task<List<BookDomain>> SearchBooks(string title, string author, string isbn)
+        public async Task<List<BookDomain>> SearchBooks(string? title, string? author, string? isbn)
         {
-            return await _bookProvider.SearchBooks(title, author, isbn);
+            if (title == null && author == null && isbn == null)
+            {
+                return await _bookProvider.GetAllBooks();
+            }
+                return await _bookProvider.SearchBooks(title, author, isbn);
         }
 
         public async Task BorrowBook(int userId, int bookId)

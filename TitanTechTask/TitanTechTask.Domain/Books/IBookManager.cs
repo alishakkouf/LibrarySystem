@@ -10,7 +10,7 @@ namespace TitanTechTask.Domain.Books
     {
         Task<List<BookDomain>> GetAllBooks();
 
-        Task<List<BookDomain>> SearchBooks(string title, string author, string isbn);
+        Task<List<BookDomain>> SearchBooks(string? title, string? author, string? isbn);
 
         Task BorrowBook(int userId, int bookId);
 

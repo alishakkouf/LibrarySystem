@@ -53,7 +53,7 @@ namespace TitanTechTask.Data.Providers
         }
 
 
-        public async Task<List<BookDomain>> SearchBooks(string title, string author, string isbn)
+        public async Task<List<BookDomain>> SearchBooks(string? title, string? author, string? isbn)
         {
             var books = new List<Book>();
 

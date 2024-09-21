@@ -8,7 +8,7 @@ namespace TitanTechTask.Models
 
         public string Password { get; set; }
 
-        public string ValidationMessage { get; private set; }
+        public string ValidationMessage { get; private set; } = string.Empty;
 
         public bool IsValid()
         {
@@ -22,6 +22,8 @@ namespace TitanTechTask.Models
                 ValidationMessage = "Username is required";
                 return false;
             }
+
+            ValidationMessage = "Valid data";
             return true;
         }
     }

@@ -26,7 +26,7 @@ namespace TitanTechTask.Controllers
 
             if (user != null)
             {
-                // Use PasswordHasher to compare the hashed password stored in the DB
+                // To compare the hashed password stored in the DB
                 var passwordHasher = new PasswordHasher<UserDomain>();
 
                 var passwordVerificationResult = passwordHasher.VerifyHashedPassword(user, user.PasswordHash, password);
@@ -65,23 +65,19 @@ namespace TitanTechTask.Controllers
                 UserName = model.Username,
                 NormalizedUserName = model.Username.ToUpper()
             };
-
-            // Use ASP.NET Core Identity PasswordHasher to hash the password
+            
             var passwordHasher = new PasswordHasher<UserDomain>();
             newUser.PasswordHash = passwordHasher.HashPassword(newUser, model.Password);
 
-            // Save the user using your data access layer (UserProvider)
-            var createResult = await _userManager.CreateUserAsync(newUser); // Custom method to insert the user into DB
+            var createResult = await _userManager.CreateUserAsync(newUser); 
 
-            if (createResult.Succeeded) // Assuming the result is a boolean indicating success
+            if (createResult.Succeeded) 
             {
-                // Manually sign in the user (assuming _signInManager is configured for manual sign-ins)
                 await _signInManager.SignInAsync(newUser, isPersistent: false);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
             }
 
-            // Handle errors if user creation failed
             ModelState.AddModelError("", "An error occurred while creating the user.");
             return View();
         }
