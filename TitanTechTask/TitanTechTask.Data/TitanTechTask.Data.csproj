@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TitanTechTask.Domain\TitanTechTask.Domain.csproj" />
+    <ProjectReference Include="..\TitanTechTask.Shared\TitanTechTask.Shared.csproj" />
   </ItemGroup>
 
 </Project>

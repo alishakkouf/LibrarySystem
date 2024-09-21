@@ -16,7 +16,7 @@ namespace TitanTechTask.Domain.Books
 
         public string ISBN { get; set; }
 
-        public bool Available { get; set; }
+        public string AvailabilityStatus { get; set; }
 
         public DateTime? BorrowedDate { get; set; }
     }

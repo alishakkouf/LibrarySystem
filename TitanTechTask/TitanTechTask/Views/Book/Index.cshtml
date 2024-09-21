@@ -34,9 +34,9 @@
                 <td style="padding-right: 20px;">@book.Title</td>
                 <td style="padding-right: 20px;">@book.Author</td>
                 <td style="padding-right: 20px;">@book.ISBN</td>
-                <td style="padding-right: 20px;">@(book.Available ? "Yes" : "No")</td>
+                <td style="padding-right: 20px;">@(book.AvailabilityStatus)</td>
                 <td>
-                    @if (book.Available)
+                    @if (book.AvailabilityStatus == "Available")
                     {
                         <form method="get" action="/Book/Borrow">
                             <input type="hidden" name="bookId" value="@book.BookId" />

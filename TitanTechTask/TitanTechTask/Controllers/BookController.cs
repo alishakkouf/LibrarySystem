@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TitanTechTask.Domain.Books;
+using TitanTechTask.Shared.Enums;
 
 namespace TitanTechTask.Controllers
 {
@@ -44,7 +45,7 @@ namespace TitanTechTask.Controllers
             // Fetch book details using the bookId to display on the Borrow view
             var book = await _bookManager.GetBookByIdAsync(bookId);
 
-            if (book == null || !book.Available)
+            if (book == null || book.AvailabilityStatus != nameof(AvailabilityStatus.Available))
             {
                 // Handle cases where the book is not available or doesn't exist
                 return RedirectToAction("Index");

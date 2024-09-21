@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using TitanTechTask.Domain.Books;
+using TitanTechTask.Shared.Enums;
 
 namespace TitanTechTask.Data.Models
 {
@@ -12,7 +13,9 @@ namespace TitanTechTask.Data.Models
     {
         public BookMappingProfile()
         {
-            CreateMap<Book, BookDomain>().ReverseMap();
+            CreateMap<Book, BookDomain>()
+                .ForMember(x=>x.AvailabilityStatus , o => o.MapFrom(x=>x.Available ? AvailabilityStatus.Available
+                                                                                   : AvailabilityStatus.CheckedOut));
         }
     }
 }
