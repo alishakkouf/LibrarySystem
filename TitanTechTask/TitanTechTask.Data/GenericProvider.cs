@@ -33,7 +33,6 @@ namespace TitanTechTask.Data
                     {
                         while (await reader.ReadAsync())
                         {
-                            // Assume there is a method to map data to the entity
                             var entity = MapReaderToEntity(reader);
                             entities.Add(entity);
                         }
